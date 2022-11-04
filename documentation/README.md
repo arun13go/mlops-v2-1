@@ -29,6 +29,7 @@ Below is the MLOps v2 architecture for a Classical Machine Learning scenario on 
 1.  **Data Estate**
 
     This element illustrates the organization data estate and potential data sources and targets for a data science project. Data Engineers would be the primary owners of this element of the MLOps v2 lifecycle. The Azure data platforms in this diagram are neither exhaustive nor prescriptive. However, data sources and targets that represent recommended best practices based on customer use case are indicated by the green check.
+    Feature store - Feathr is part of data estate to store ML Features (measurable data input entities) and materialization as it will support both batch and online store for model training and predication. Azure Purview will be used for feature registry and feature sharing.
 
 2.  **Administration & Setup**
 
@@ -45,12 +46,14 @@ Below is the MLOps v2 architecture for a Classical Machine Learning scenario on 
     -   Creation of CI/CD (Continuous Integration and Continuous Delivery) pipelines
 
     -   Creation of Monitors for collection and notification of model and infrastructure metrics.
+    
+    -   Creation of Feature store for a data management layer for machine learning that allows to share & discover features and create more effective machine learning pipelines.
 
     Personas associated with this phase may be primarily Infrastructure Team but may also include all of Data Engineers, Machine Learning Engineers, and Data Scientists.
 
 3.  **Model Development (Inner Loop)**
 
-    The inner loop element consists of your iterative data science workflow performed within a dedicated, secure Azure Machine Learning Workspace. A typical workflow is illustrated here from data ingestion, EDA (Exploratory Data Analysis), experimentation, model development and evaluation, to registration of a candidate model for production. This modular element as implemented in the MLOps v2 accelerator is agnostic and adaptable to the process your data science team may use to develop models.
+    The inner loop element consists of your iterative data science workflow performed within a dedicated, secure Azure Machine Learning Workspace. A typical workflow is illustrated here from data ingestion, EDA (Exploratory Data Analysis), Features engineering, experimentation, model development and evaluation, to registration of a candidate model for production. This modular element as implemented in the MLOps v2 accelerator is agnostic and adaptable to the process your data science team may use to develop models.
 
     Personas associated with this phase include Data Scientists and ML Engineers.
 
@@ -68,11 +71,11 @@ Below is the MLOps v2 architecture for a Classical Machine Learning scenario on 
 
 6.  **Staging & Test**
 
-    The Staging & Test phase can vary with customer practices but typically includes operations such as retraining and testing of the model candidate on production data,  test deployments for endpoint performance, data quality checks, unit testing, and Responsible AI checks for model and data bias.  This phase takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
+    The Staging & Test phase can vary with customer practices but typically includes operations such as retraining and testing of the model candidate on production data along with Features (Feathr store),  test deployments for endpoint performance, data quality checks, unit testing, and Responsible AI checks for model and data bias.  This phase takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
 
 7.  **Production Deployment**
 
-    After a model passes the Staging & Test phase, the model can be promoted to production via a human-in-the-loop gated approvals. Model deployment options include a Batch Managed Endpoint for batch scenarios or, for online, near-realtime scenarios, either an Online Managed Endpoint or to Kubernetes using Azure Arc. Production typically takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
+    After a model passes the Staging & Test phase, the model can be promoted to production via a human-in-the-loop gated approvals. Model deployment options include a Batch Managed Endpoint for batch scenarios or, for online, near-realtime scenarios, either an Online Managed Endpoint or to Kubernetes using Azure Arc. The Feathr  store provides features for batch predictions, a low latency serving API for retrieving features for online predictions. Production typically takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
 
 8.  **Monitoring**
 
@@ -94,7 +97,7 @@ The Azure Machine Learning Computer Vision Architecture is based on the Classica
 
 1. **Data Estate**
 
-    This element illustrates the organization data estate and potential data sources and targets for a data science project. Data Engineers would be the primary owners of this element of the MLOps v2 lifecycle. The Azure data platforms in this diagram are neither exhaustive nor prescriptive. Images for Computer Vision scenarios may come from many different data sources. For efficiency when developing and deploying CV models with Azure Machine Learning, recommended Azure data sources for images are Azure Blob Storage and Azure Data Lake Storage.
+    This element illustrates the organization data estate and potential data sources and targets for a data science project. Data Engineers would be the primary owners of this element of the MLOps v2 lifecycle. The Azure data platforms in this diagram are neither exhaustive nor prescriptive. Images for Computer Vision scenarios may come from many different data sources. For efficiency when developing and deploying CV models with Azure Machine Learning, recommended Azure data sources for images are Azure Blob Storage and Azure Data Lake Storage. Feature store - Feathr is part of data estate to store ML Features (measurable data input entities) and materialization as it will support both batch and online store for model training and predication. Azure Purview will be used for feature registry and feature sharing.
 
 2. **Administration & Setup**
 
@@ -118,7 +121,7 @@ The Azure Machine Learning Computer Vision Architecture is based on the Classica
 
 7.  **Production Deployment**
 
-    After a model passes the Staging & Test phase, the model can be promoted to production via human-in-the-loop gated approvals. Model deployment options include a Batch Managed Endpoint for batch scenarios or, for online, near-realtime scenarios, either an Online Managed Endpoint or to Kubernetes using Azure Arc. Production typically takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
+    After a model passes the Staging & Test phase, the model can be promoted to production via human-in-the-loop gated approvals. Model deployment options include a Batch Managed Endpoint for batch scenarios or, for online, near-realtime scenarios, either an Online Managed Endpoint or to Kubernetes using Azure Arc. The Feathr  store provides features for batch predictions, a low latency serving API for retrieving features for online predictions.  Production typically takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
 
 8.  **Monitoring**
 
@@ -140,7 +143,7 @@ The Azure Machine Learning Natural Language Processing Architecture is based on 
 
 1.  **Data Estate**
 
-    This element illustrates the organization data estate and potential data sources and targets for a data science project. Data Engineers would be the primary owners of this element of the MLOps v2 lifecycle. The Azure data platforms in this diagram are neither exhaustive nor prescriptive. However, data sources and targets that represent recommended best practices based on customer use case are indicated by the green check
+    This element illustrates the organization data estate and potential data sources and targets for a data science project. Data Engineers would be the primary owners of this element of the MLOps v2 lifecycle. The Azure data platforms in this diagram are neither exhaustive nor prescriptive. However, data sources and targets that represent recommended best practices based on customer use case are indicated by the green check. Feature store - Feathr is part of data estate to store ML Features (measurable data input entities) and materialization as it will support both batch and online store for model training and predication. Azure Purview will be used for feature registry and feature sharing.
 
 2. **Administration & Setup**
 
@@ -164,7 +167,7 @@ The Azure Machine Learning Natural Language Processing Architecture is based on 
 
 7.  **Production Deployment**
 
-    After a model passes the Staging & Test phase, the model can be promoted to production via a human-in-the-loop gated approvals. Model deployment options include a Batch Managed Endpoint for batch scenarios or, for online, near-realtime scenarios, either an Online Managed Endpoint or to Kubernetes using Azure Arc. Production typically takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
+    After a model passes the Staging & Test phase, the model can be promoted to production via a human-in-the-loop gated approvals. Model deployment options include a Batch Managed Endpoint for batch scenarios or, for online, near-realtime scenarios, either an Online Managed Endpoint or to Kubernetes using Azure Arc. The Feathr  store provides features for batch predictions, a low latency serving API for retrieving features for online predictions. Production typically takes place in one or more dedicated, secure Azure Machine Learning Workspaces.
 
 8.  **Monitoring**
 
